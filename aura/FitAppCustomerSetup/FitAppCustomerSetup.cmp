@@ -1,0 +1,159 @@
+<!--
+Author:        Cezary Zeleznicki
+Company:
+Description:   FitAppCustomerSetup
+History
+<Date>      <Authors Name>     <Brief Description of Change>
+02.10.2018  Cezary Zeleznicki       creation
+ -->
+
+<aura:component description="FitAppCustomerSetup" extends="c:COM_BaseComponent">
+    <aura:attribute name="contact" type="Object"/>
+    <aura:attribute name="editMode" type="Boolean" default="false"/>
+
+    <aura:registerEvent name="fitAppSaveEvent" type="c:FitAppSaveEvent"/>
+
+    <div class="slds-size_1-of-1">
+        <h1 class="slds-text-heading--small slds-p-vertical--medium">
+            User setup
+        </h1>
+        <fieldset class="slds-box slds-theme--default">
+            <form class="slds-form_stacked">
+                <div class="slds-grid slds-gutters_small">
+                    <div class="slds-col">
+                        <lightning:input aura:id="firstName"
+                                         label="First Name"
+                                         disabled="{!not(v.editMode)}"
+                                         value="{!v.contact.record.FirstName}"
+                                         required="true"/>
+
+                        <lightning:input aura:id="age"
+                                         label="Age"
+                                         max="120"
+                                         disabled="{!not(v.editMode)}"
+                                         value="{!v.contact.record.Age__c}"
+                                         required="true"/>
+
+                        <lightning:input aura:id="height"
+                                         label="Height"
+                                         disabled="{!not(v.editMode)}"
+                                         value="{!v.contact.record.Height__c}"
+                                         required="true"/>
+
+                        <c:InputPicklist label="Sex"
+                                         options="{!v.contact.picklists.sex}"
+                                         value="{!v.contact.record.Sex__c}"
+                                         showNone="true"
+                                         noneLabel="Select"
+                                         optionsWithLabels="true"
+                                         disabled="{!not(v.editMode)}"
+                                         required="true"/>
+
+                        <c:InputPicklist label="Diet Goal"
+                                         options="{!v.contact.picklists.dietGoal}"
+                                         value="{!v.contact.record.Diet_goal__c}"
+                                         showNone="true"
+                                         noneLabel="Select"
+                                         optionsWithLabels="true"
+                                         disabled="{!not(v.editMode)}"
+                                         required="true"/>
+                    </div>
+
+                    <div class="slds-col">
+                        <lightning:input aura:id="lastName"
+                                         label="Last Name"
+                                         disabled="{!not(v.editMode)}"
+                                         value="{!v.contact.record.LastName}"
+                                         required="true"/>
+
+                        <c:InputPicklist label="Body shape"
+                                         options="{!v.contact.picklists.bodyShape}"
+                                         value="{!v.contact.record.Body_shape__c}"
+                                         showNone="true"
+                                         noneLabel="Select"
+                                         optionsWithLabels="true"
+                                         disabled="{!not(v.editMode)}"
+                                         required="true"/>
+
+                        <lightning:input aura:id="weight"
+                                         label="Weight"
+                                         disabled="{!not(v.editMode)}"
+                                         value="{!v.contact.record.Weight__c}"
+                                         required="true"/>
+
+                        <c:InputPicklist label="Daily Activity"
+                                         options="{!v.contact.picklists.dailyActivity}"
+                                         value="{!v.contact.record.Daily_Activity__c}"
+                                         showNone="true"
+                                         noneLabel="Select"
+                                         optionsWithLabels="true"
+                                         disabled="{!not(v.editMode)}"
+                                         required="true"/>
+
+                        <lightning:input aura:id="goalKcalDiff"
+                                         label="Goal Kcal Difference"
+                                         disabled="{!not(v.editMode)}"
+                                         value="{!v.contact.record.Goal_Kcal_Diff__c}"
+                                         required="true"/>
+                    </div>
+                </div>
+
+
+                <fieldset class="slds-form-element slds-form_compound slds-m-top_medium">
+                    <div class="slds-text-heading--small slds-p-vertical--medium">
+                        Elements (Per kg of body mass)
+                    </div>
+
+                    <div class="slds-grid slds-gutters_small">
+                        <div class="slds-col">
+                            <div class="{!not(v.contact.record.Manual_Calculation__c) ? 'slds-hide' : ''}">
+                                <lightning:helptext content="This will be calculated automatically"
+                                                    title="Carbs help"/>
+                            </div>
+
+                            <lightning:input aura:id="carbs"
+                                             label="Carbs"
+                                             disabled="true"
+                                             value="{!v.contact.record.Carbs__c}"/>
+                        </div>
+
+                        <div class="slds-col">
+                            <lightning:input aura:id="fat"
+                                             label="Fat"
+                                             disabled="{!not(v.contact.record.Manual_Calculation__c)}"
+                                             value="{!v.contact.record.Fat__c}"
+                                             required="true"/>
+                        </div>
+
+                        <div class="slds-col">
+                            <lightning:input aura:id="protein"
+                                             label="Protein"
+                                             disabled="{!not(v.contact.record.Manual_Calculation__c)}"
+                                             value="{!v.contact.record.Protein__c}"
+                                             required="true"/>
+                        </div>
+
+                        <div class="slds-col">
+                            <lightning:input aura:id="kcal"
+                                             label="Kcal"
+                                             disabled="{!not(v.contact.record.Manual_Calculation__c)}"
+                                             value="{!v.contact.record.Kcal__c}"
+                                             required="true"/>
+                        </div>
+
+                        <div class="slds-col slds-align-middle">
+                            <lightning:input aura:id="manualCalc"
+                                             label="Manual Calculation"
+                                             disabled="{!not(v.editMode)}"
+                                             value="{!v.contact.record.Manual_Calculation__c}"
+                                             checked="{!v.contact.record.Manual_Calculation__c}"
+                                             type="checkbox"/>
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+        </fieldset>
+
+        <lightning:button name="save" label="Save" onclick="{!c.save}"/>
+    </div>
+</aura:component>

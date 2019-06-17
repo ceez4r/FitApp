@@ -1,0 +1,14 @@
+<!--
+Author:        Cezary Zeleznicki
+Company:
+Description:   ShowFitAppBookModalEvent
+History
+<Date>      <Authors Name>     <Brief Description of Change>
+26.10.2018  Cezary Zeleznicki       creation
+ -->
+
+<aura:event type="COMPONENT" description="ShowFitAppBookModalEvent">
+    <aura:attribute name="meal" type="Object"/>
+    <aura:attribute name="mealPlanIndex" type="Integer"/>
+    <aura:attribute name="mealIndex" type="Integer"/>
+</aura:event>

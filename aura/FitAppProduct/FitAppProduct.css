@@ -1,0 +1,11 @@
+/**
+ * Created by czeleznick002 on 04.12.2018.
+ */
+.THIS .number-fields-padding .slds-input{
+    padding: 0px 0rem 0px 0.75rem;
+}
+
+.THIS .number-fields-padding .slds-form-element__label {
+    overflow-wrap: normal;
+    word-wrap: normal;
+}

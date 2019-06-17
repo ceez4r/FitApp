@@ -1,0 +1,11 @@
+<!--
+Author:        Cezary Zeleznicki
+Company:
+Description:   COM_InputLookupSearchDoneEvent
+History
+<Date>      <Authors Name>     <Brief Description of Change>
+07/12/2018  Cezary Zeleznicki       creation
+ -->
+
+<aura:event type="COMPONENT" description="COM_InputLookupSearchDoneEvent">
+</aura:event>

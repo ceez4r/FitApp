@@ -1,0 +1,7 @@
+<!--
+ - Created by czeleznick002 on 03.10.2018.
+ -->
+
+<aura:component description="COM_BaseComponent" extensible="true" abstract="true">
+    {!v.body}
+</aura:component>

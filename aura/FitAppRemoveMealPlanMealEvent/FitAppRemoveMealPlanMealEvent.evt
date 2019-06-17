@@ -1,0 +1,8 @@
+<!--
+ - Created by czeleznick002 on 23.10.2018.
+ -->
+
+<aura:event type="COMPONENT" description="FitAppRemoveMealPlanMealEvent">
+    <aura:attribute name="mealPlanMealId" type="String"/>
+    <aura:attribute name="mealPlanIndex" type="String"/>
+</aura:event>

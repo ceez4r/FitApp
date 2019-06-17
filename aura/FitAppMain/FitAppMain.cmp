@@ -1,0 +1,35 @@
+<!--
+Author:        Cezary Zeleznicki
+Company:
+Description:   FitAppMain
+History
+<Date>      <Authors Name>     <Brief Description of Change>
+02.10.2018  Cezary Zeleznicki       creation
+ -->
+
+<aura:component description="FitAppMain" controller="FitAppMainController" extends="c:COM_BaseComponent"
+    implements="force:appHostable,flexipage:availableForAllPageTypes,forceCommunity:availableForAllPageTypes,force:hasRecordId,force:hasSObjectName">
+    <aura:attribute name="contact" type="Object"/>
+
+    <aura:handler name="init" action="{!c.doInit}" value="{!this}"/>
+    <aura:handler name="fitAppSaveEvent" action="{!c.handleSaveEvent}" event="c:FitAppSaveEvent"/>
+
+    <div class="slds-grid background-gradient-green">
+        <div class=""></div>
+        <div class="slds-size_12-of-12">
+            <aura:if isTrue="{!and(v.contact != null, not(v.contact.isSetupCompleted))}">
+                <c:FitAppCustomerSetup contact="{!v.contact}" editMode="true"/>
+            </aura:if>
+
+            <aura:if isTrue="{!v.contact.isSetupCompleted}">
+                <c:FitAppBook contact="{!v.contact}"/>
+            </aura:if>
+        </div>
+        <div class=""></div>
+    </div>
+
+    <lightning:spinner aura:id="spinner"
+                       class="slds-is-fixed slds-hide"
+                       alternativeText="Loading data"
+                       size="medium"/>
+</aura:component>

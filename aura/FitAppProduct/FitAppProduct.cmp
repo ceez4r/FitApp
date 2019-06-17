@@ -1,0 +1,76 @@
+<!--
+Author:        Cezary Zeleznicki
+Company:
+Description:   FitAppProduct
+History
+<Date>      <Authors Name>     <Brief Description of Change>
+02.10.2018  Cezary Zeleznicki       creation
+ -->
+
+<aura:component description="FitAppProduct" extends="c:COM_BaseComponent">
+    <aura:attribute name="product" type="Object"/>
+    <aura:attribute name="editMode" type="Boolean" default="false"/>
+    <aura:attribute name="editWeight" type="Boolean" default="false"/>
+
+    <aura:method name="validate" action="{!c.validate}"/>
+
+    <div class="slds-grid slds-size_1-of-1" aura:id="form">
+        <div class="slds-size_11-of-12">
+            <div class="slds-grid">
+                <div class="slds-size_1-of-4">
+                    <lightning:input aura:id="name"
+                                     label="Name"
+                                     disabled="{!not(v.editMode)}"
+                                     value="{!v.product.name}"
+                                     required="true"
+                                     class="slds-p-right_small"/>
+                </div>
+
+                <div class="slds-size_3-of-4 slds-grid number-fields-padding">
+                    <lightning:input aura:id="protein"
+                                     label="Protein"
+                                     disabled="{!not(v.editMode)}"
+                                     value="{!v.product.protein}"
+                                     required="true"
+                                     class="slds-size_1-of-5 slds-p-right_small"/>
+
+                    <lightning:input aura:id="carbs"
+                                     label="Carbs"
+                                     disabled="{!not(v.editMode)}"
+                                     value="{!v.product.carbs}"
+                                     required="true"
+                                     class="slds-size_1-of-5 slds-p-right_small"/>
+
+                    <lightning:input aura:id="fat"
+                                     label="Fat"
+                                     disabled="{!not(v.editMode)}"
+                                     value="{!v.product.fat}"
+                                     required="true"
+                                     class="slds-size_1-of-5 slds-p-right_small"/>
+
+                    <lightning:input aura:id="kcal"
+                                     label="Kcal"
+                                     disabled="{!not(v.editMode)}"
+                                     value="{!v.product.kcal}"
+                                     required="true"
+                                     class="slds-size_1-of-5 slds-p-right_small number-field"/>
+
+                    <lightning:input aura:id="weight"
+                                     label="Weight"
+                                     type="number"
+                                     disabled="{!and(not(v.editMode), not(v.editWeight))}"
+                                     value="{!v.product.weight}"
+                                     required="true"
+                                     class="slds-size_1-of-5 slds-p-right_small"/>
+                </div>
+            </div>
+        </div>
+
+        <div class="{!v.editWeight ? 'slds-hide' : 'slds-size_1-of-12 slds-m-top_large'}">
+            <button class="slds-button slds-button_icon" onclick="{!c.toggleEdit}">
+                <lightning:icon iconName="{!v.editMode ? 'utility:check' : 'utility:edit'}" size="x-small"/>
+            </button>
+        </div>
+    </div>
+
+</aura:component>
