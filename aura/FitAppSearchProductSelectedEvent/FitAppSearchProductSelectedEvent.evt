@@ -1,0 +1,7 @@
+<!--
+ - Created by czeleznick002 on 08.10.2018.
+ -->
+
+<aura:event type="COMPONENT" description="FitAppSearchProductSelectedEvent">
+    <aura:attribute name="product" type="Object"/>
+</aura:event>

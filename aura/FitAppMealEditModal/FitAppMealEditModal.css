@@ -1,0 +1,21 @@
+/**
+ * Created by czeleznick002 on 04.12.2018.
+ */
+.THIS .slds-box_border.slds-p-around_small{
+    padding: 0.5rem;
+}
+
+.THIS .remove-icon {
+    right: 5px;
+    top: 0px;
+}
+
+.THIS .up-icon {
+    right: 30px;
+    top: 0px;
+}
+
+.THIS .down-icon {
+    right: 30px;
+    bottom: 0px;
+}

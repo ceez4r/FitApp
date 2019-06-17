@@ -1,0 +1,157 @@
+<!--
+Author:        Cezary Zeleznicki
+Company:
+Description:   FitAppMeal
+History
+<Date>      <Authors Name>     <Brief Description of Change>
+02.10.2018  Cezary Zeleznicki       creation
+ -->
+
+<aura:component description="FitAppMeal" extends="c:COM_BaseComponent">
+    <aura:attribute name="meal" type="Object"/>
+    <aura:attribute name="index" type="Integer"/>
+    <aura:attribute name="mealPlanIndex" type="Integer"/>
+
+    <aura:registerEvent name="showModal" type="c:ShowFitAppBookModalEvent"/>
+
+    <div>
+        <div class="slds-grid slds-grid_vertical">
+            <button class="{!'fa-branded ' + (mod(v.index + 1, 2) > 0 ? 'blue' : 'light-blue' )}" onclick="{!c.openEditModal}">
+                <div class="slds-col slds-m-bottom_xxx-small">
+                    {!empty(v.meal.name) ? 'Name' : v.meal.name}
+                </div>
+
+                <div class="slds-col slds-grid">
+                    <div class="slds-col">
+                        P:
+                        <lightning:formattedNumber title="Protein"
+                                                   maximumFractionDigits="1"
+                                                   value="{!v.meal.protein}"/>
+                    </div>
+
+                    <div class="slds-col">
+                        F:
+                        <lightning:formattedNumber title="Fat"
+                                                   maximumFractionDigits="1"
+                                                   value="{!v.meal.fat}"/>
+                    </div>
+
+                    <div class="slds-col">
+                        C:
+                        <lightning:formattedNumber title="Carbs"
+                                                   maximumFractionDigits="1"
+                                                   value="{!v.meal.carbs}"/>
+                    </div>
+                </div>
+            </button>
+        </div>
+
+        <!--<div class="slds-hide">-->
+            <!--<div aura:id="modalContent">-->
+            <!--&lt;!&ndash;<c:COM_Modal isOpen="{!v.showEditModal}" size="medium" isMinHeightSet="true">&ndash;&gt;-->
+                <!--<div class="slds-grid">-->
+                    <!--<div class="slds-col slds-m-right_medium">-->
+                        <!--<div class="slds-grid slds-m-top_medium">-->
+                            <!--<div class="slds-col slds-size_3-of-4">-->
+                                <!--<lightning:input aura:id="mealName"-->
+                                                 <!--label="{#$Label.c.FA_Meal_Name}"-->
+                                                 <!--disabled="{!v.editMode}"-->
+                                                 <!--value="{!v.meal.name}"-->
+                                                 <!--required="true"-->
+                                                 <!--class="slds-size_1-of-2"/>-->
+
+                                <!--<lightning:input aura:id="weight"-->
+                                                 <!--label="{#$Label.c.FA_Meal_Weight}"-->
+                                                 <!--disabled="{!v.editMode}"-->
+                                                 <!--value="{!v.meal.weight}"-->
+                                                 <!--class="slds-size_1-of-3"/>-->
+                            <!--</div>-->
+
+                            <!--<div class="slds-col slds-size_1-of-4">-->
+                                <!--<lightning:input aura:id="protein"-->
+                                                 <!--label="{#$Label.c.FA_Meal_Protein}"-->
+                                                 <!--disabled="true"-->
+                                                 <!--value="{!v.meal.protein}"/>-->
+
+                                <!--<lightning:input aura:id="carbs"-->
+                                                 <!--label="{#$Label.c.FA_Meal_Carbs}"-->
+                                                 <!--disabled="true"-->
+                                                 <!--value="{!v.meal.carbs}"/>-->
+
+                                <!--<lightning:input aura:id="fat"-->
+                                                 <!--label="{#$Label.c.FA_Meal_Fat}"-->
+                                                 <!--disabled="true"-->
+                                                 <!--value="{!v.meal.fat}"/>-->
+
+                                <!--<lightning:input aura:id="kcal"-->
+                                                 <!--label="{#$Label.c.FA_Meal_Kcal}"-->
+                                                 <!--disabled="true"-->
+                                                 <!--value="{!v.meal.kcal}"/>-->
+                            <!--</div>-->
+                        <!--</div>-->
+
+                        <!--<div class="slds-grid_vertical">-->
+                            <!--<div class="slds-col">-->
+                                <!--<h3>Products:</h3>-->
+                                <!--<div class="slds-m-bottom_medium">-->
+                                    <!--<div class="slds-grid">-->
+                                        <!--<aura:iteration items="{!v.meal.products}" var="product" indexVar="index">-->
+                                            <!--<div class="slds-col slds-box_border">-->
+                                                <!--{!product.name}-->
+                                            <!--</div>-->
+
+                                            <!--<div class="slds-col">-->
+                                                <!--<button class="slds-button slds-button_icon"-->
+                                                        <!--data-index="{!index}"-->
+                                                        <!--onclick="{!c.removeProduct}">-->
+                                                    <!--<lightning:icon iconName="utility:delete" size="x-small"/>-->
+                                                <!--</button>-->
+                                            <!--</div>-->
+                                        <!--</aura:iteration>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</div>-->
+
+                    <!--<div class="slds-col slds-size_1-of-2 slds-m-left_medium">-->
+                        <!--<lightning:tabset selectedTabId="searchProducts">-->
+                            <!--<lightning:tab label="Search products" id="searchProducts">-->
+                                <!--<c:FitAppSearchProducts products="{!v.products}"/>-->
+                            <!--</lightning:tab>-->
+
+                            <!--<lightning:tab label="Add new Product(s)" id="addProducts">-->
+                                <!--<div class="slds-grid_vertical">-->
+                                    <!--<aura:iteration items="{!v.newProducts}" var="newProduct" indexVar="index">-->
+                                        <!--<div class="slds-col slds-grid">-->
+                                            <!--<div class="slds-col slds-grid">-->
+                                                <!--<c:FitAppProduct editMode="true" product="{!newProduct}"/>-->
+                                            <!--</div>-->
+                                            <!--<div class="slds-col">-->
+                                                <!--<button class="slds-button slds-button_icon slds-m-top_large"-->
+                                                        <!--data-index="{!index}"-->
+                                                        <!--onclick="{!c.removeProduct}">-->
+                                                    <!--<lightning:icon iconName="utility:delete" size="x-small"/>-->
+                                                <!--</button>-->
+                                            <!--</div>-->
+                                        <!--</div>-->
+                                    <!--</aura:iteration>-->
+
+                                    <!--<button class="slds-button slds-button_icon slds-m-top_medium" onclick="{!c.addProduct}">-->
+                                        <!--<lightning:icon iconName="utility:add" size="xx-small"/>-->
+                                    <!--</button>-->
+                                <!--</div>-->
+
+                            <!--</lightning:tab>-->
+                        <!--</lightning:tabset>-->
+                    <!--</div>-->
+                <!--</div>-->
+
+                <!--<aura:set attribute="dialogButtons">-->
+                    <!--<lightning:button label="Save" onclick="{!c.saveMeal}" variant="brand"/>-->
+                <!--</aura:set>-->
+            <!--</div>-->
+        <!--</div>-->
+        <!--</c:COM_Modal>-->
+    </div>
+</aura:component>

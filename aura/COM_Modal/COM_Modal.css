@@ -1,0 +1,69 @@
+/**
+ * Created by czeleznick002 on 08.10.2018.
+ */
+.THIS .custom-header{
+    position: relative;
+    background: #fff;
+    min-height: 5px;
+}
+
+.THIS .custom-footer{
+    background: #fff;
+    min-height: 5px;
+}
+
+.THIS .slds-modal_medium .slds-modal__container{
+    width: 70%;
+    max-width: 65rem;
+}
+
+.THIS .slds-modal_small .slds-modal__container{
+    width: 25%;
+    max-width: 65rem;
+}
+
+.THIS .modal-scroll-container {
+    overflow: auto;
+    max-height: calc(100vh - 6rem);
+}
+
+.THIS .modal-radius-container {
+    -webkit-border-radius: 0.25rem;
+    -moz-border-radius: 0.25rem;
+    border-radius: 0.25rem;
+    overflow: hidden;
+    background-color: #fff;
+}
+
+.THIS .slds-modal_wide > .slds-modal__container {
+    width: auto;
+    max-width: 60vw;
+}
+
+@media only screen and (max-width: 1200px)  {
+    .THIS .slds-modal_wide > .slds-modal__container {
+        max-width: 90vw;
+    }
+}
+
+@media only screen and (max-width: 767px)  {
+    .THIS .slds-modal_small .slds-modal__container {
+        width: auto;
+    }
+}
+
+.THIS .slds-modal__container{
+    -o-transform: none;
+    -moz-transform: none;
+    -ms-transform: none;
+    -webkit-transform: none;
+    transform: none;
+}
+
+.THIS .slds-modal__content.min-height {
+    min-height: calc(100vh - 18rem);
+}
+
+.THIS .enable-tooltips {
+    overflow: unset;
+}

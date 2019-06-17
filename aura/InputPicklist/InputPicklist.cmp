@@ -1,0 +1,52 @@
+<!--
+Author:        Cezary Zeleznicki
+Company:
+Description:   InputPicklist
+History
+<Date>      <Authors Name>     <Brief Description of Change>
+04.10.2018  Cezary Zeleznicki       creation
+ -->
+
+<aura:component description="InputPicklist">
+    <aura:attribute name="label" type="String"/>
+    <aura:attribute name="disabled" type="Boolean" default="false"/>
+    <aura:attribute name="required" type="Boolean" default="false"/>
+    <aura:attribute name="showNone" type="Boolean" default="true"/>
+    <aura:attribute name="options" type="List" />
+    <aura:attribute name="value" type="String"/>
+    <aura:attribute name="optionsWithLabels" type="Boolean" default="false"/>
+    <aura:attribute name="noneLabel" type="String" default="-- None --"/>
+    <aura:attribute name="class" type="String" default=""/>
+    <aura:attribute name="validity" type="Object"/>
+    <aura:attribute name="onchange" type="Aura.Action"/>
+
+    <aura:handler name="init" action="{!c.doInit}" value="{!this}"/>
+
+    <aura:method name="showHelpMessageIfInvalid" action="{!c.showHelpMessageIfInvalid}"/>
+
+    <div aura:id="container" class="{!v.class}">
+        <lightning:select aura:id="selectInput"
+                          name="selectItem"
+                          label="{!v.label}"
+                          value="{!v.value}"
+                          disabled="{!v.disabled}"
+                          required="{!v.required}"
+                          onchange="{!v.onchange}">
+
+            <aura:if isTrue="{!v.showNone}">
+                <option value="">{!v.noneLabel}</option>
+            </aura:if>
+            <aura:if isTrue="{!v.optionsWithLabels}">
+                <aura:iteration items="{!v.options}" var="option">
+                    <option value="{!option.value}" text="{!option.label}" selected="{!v.value == option.value}"></option>
+                </aura:iteration>
+            </aura:if>
+
+            <aura:if isTrue="{!not(v.optionsWithLabels)}">
+                <aura:iteration items="{!v.options}" var="option">
+                    <option value="{!option}" text="{!option}"></option>
+                </aura:iteration>
+            </aura:if>
+        </lightning:select>
+    </div>
+</aura:component>

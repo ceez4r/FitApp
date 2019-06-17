@@ -1,0 +1,13 @@
+<!--
+Author:        Cezary Zeleznicki
+Company:
+Description:   FitAppSearchProductEvent
+History
+<Date>      <Authors Name>     <Brief Description of Change>
+25.10.2018  Cezary Zeleznicki       creation
+ -->
+
+<aura:event type="COMPONENT" description="FitAppSearchProductEvent">
+    <aura:attribute name="searchPhrase" type="String"/>
+    <aura:attribute name="spinner" type="Aura.Component[]"/>
+</aura:event>

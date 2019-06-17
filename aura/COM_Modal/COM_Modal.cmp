@@ -1,0 +1,78 @@
+<!--
+ - Created by czeleznick002 on 08.10.2018.
+ -->
+
+<aura:component description="COM_Modal">
+    <aura:attribute name="zIndex" type="Integer" default="9001" access="public" />
+    <aura:attribute name="isOpen" type="Boolean" access="public" />
+    <aura:attribute name="isCloseVisible" type="Boolean" access="public" default="true" />
+    <aura:attribute name="backgroundCloseAllowed" type="Boolean" access="public" default="true" />
+    <aura:attribute name="header" type="String" access="public" description="Standard text header, disabled when customHeaderComponents used"/>
+    <aura:attribute name="size" type="String" description="small | medium | large | wide"/>
+    <aura:attribute name="dialogButtons" type="Aura.Component[]" access="public" />
+    <aura:attribute name="customHeaderComponents" type="Aura.Component[]" access="public" description="Replaces standard header with custom content" />
+    <aura:attribute name="showSpinner" type="Boolean" default="false" />
+    <aura:attribute name="isMinHeightSet" type="Boolean" default="false"/>
+    <aura:attribute name="enableTooltips" type="Boolean" default="false" />
+
+    <aura:if isTrue="{!v.isOpen}">
+        <style>
+            .forceStyle .viewport .oneHeader.slds-global-header_container {
+                z-index: 0;
+            }
+
+            .forceStyle.desktop .viewport {
+                overflow: hidden;
+            }
+
+            div.oneUtilityBar.slds-utility-bar_container {
+                z-index: 0 !important;
+            }
+        </style>
+    </aura:if>
+
+    <div>
+        <div class="{!v.isOpen ? '' : 'slds-hide'}">
+            <div class="{!'slds-modal slds-fade-in-open slds-modal_' + v.size}" onclick="{!c.handleBackgroundClick}" style="{# 'z-index: ' + v.zIndex}">
+                <div class="slds-modal__container">
+                    <div aura:id="modal-body">
+                        <div class="{!'slds-is-relative ' + (v.isCloseVisible ? '' : 'slds-hide')}">
+                            <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" onclick="{!c.doClose}">
+                                <lightning:icon iconName="utility:close" variant="inverse" size="small"/>
+                            </button>
+                        </div>
+                        <div class="{!'modal-radius-container slds-is-relative' + (v.enableTooltips ? ' enable-tooltips' : '')}">
+                            <lightning:spinner aura:id="dialogBoxSpinner" class="{!v.showSpinner ? '' : 'slds-hide'}" variant="brand" />
+
+                            <div class="{!'modal-scroll-container' +
+                                    (v.showSpinner ? ' slds-hidden' : '') +
+                                    (v.enableTooltips ? ' enable-tooltips' : '')}"
+                            >
+                                <header class="{!empty(v.customHeaderComponents) ? 'slds-hide' : 'custom-header'}">
+                                    {!v.customHeaderComponents}
+                                </header>
+                                <header class="{! ! empty(v.customHeaderComponents) ? 'slds-hide' : empty(v.header) ? 'custom-header' : 'slds-modal__header'}">
+                                    <h2 class="{!'slds-text-heading_medium slds-hyphenate ' + (empty(v.header) ? 'slds-hide' : '')}">
+                                        {!v.header}
+                                    </h2>
+                                </header>
+
+                                <div class="{#'slds-modal__content slds-p-around_medium' +
+                                        (v.isMinHeightSet ? ' min-height' : '') +
+                                        (v.enableTooltips ? ' enable-tooltips' : '')}"
+                                >
+                                    {!v.body}
+                                </div>
+
+                                <footer class="{!(empty(v.dialogButtons) ? 'custom-footer' : 'slds-modal__footer')}" >
+                                    {!v.dialogButtons}
+                                </footer>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="slds-backdrop slds-backdrop_open" style="{# 'z-index: ' + (v.zIndex - 1)}"></div>
+        </div>
+    </div>
+</aura:component>

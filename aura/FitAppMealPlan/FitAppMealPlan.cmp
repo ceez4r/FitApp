@@ -1,0 +1,56 @@
+<!--
+Author:        Cezary Zeleznicki
+Company:
+Description:   FitAppMealPlan
+History
+<Date>      <Authors Name>     <Brief Description of Change>
+02.10.2018  Cezary Zeleznicki       creation
+ -->
+
+<aura:component description="FitAppMealPlan" extends="c:COM_BaseComponent">
+    <aura:attribute name="mealPlan" type="Object"/>
+    <aura:attribute name="mealIdInEdit" type="String"/>
+    <aura:attribute name="index" type="String" description="Meal Plan index"/>
+    <aura:attribute name="editMode" type="Boolean" default="false"/>
+
+    <aura:handler name="addProduct" event="c:FitAppAddProductEvent" action="{!c.showSearchProductsModal}"/>
+    <aura:registerEvent name="addNewMeal" type="c:FitAppAddNewMealEvent"/>
+    <aura:registerEvent name="removeMeal" type="c:FitAppRemoveMealEvent"/>
+    <aura:registerEvent name="removeMealPlanMeal" type="c:FitAppRemoveMealPlanMealEvent"/>
+
+    <div class="slds-grid slds-wrap slds-box_border">
+        <!--<div class="slds-size_1-of-1 slds-p-horizontal_x-small">-->
+            <div class="slds-size_1-of-1 slds-text-align_center slds-border_bottom slds-p-vertical_medium">
+                <h3 class="slds-text-title_caps">
+                    {!v.mealPlan.dayOfWeek} <br/>
+                    <lightning:formattedDateTime value="{!v.mealPlan.day}"/>
+                </h3>
+            </div>
+
+            <div class="slds-size_1-of-1">
+                <h3>{!v.mealPlan.name}</h3>
+            </div>
+
+            <div class="slds-size_1-of-1 meal-table slds-is-relative">
+                <aura:iteration items="{!v.mealPlan.meals}" var="meal" indexVar="index">
+                    <div class="slds-p-horizontal_small slds-p-vertical_small meal-column slds-is-relative">
+                        <button class="{!index > 0 ? 'slds-hide' : 'slds-button slds-button_icon slds-is-absolute add-meal'}" onclick="{!c.addNewMeal}">
+                            <lightning:icon iconName="action:new" size="xx-small"/>
+                        </button>
+
+                        <c:FitAppMeal meal="{!meal}" index="{!index}" mealPlanIndex="{!v.index}"/>
+
+                        <button class="slds-button slds-button_icon slds-is-absolute remove-meal" data-index="{!index}" onclick="{!c.removeMeal}">
+                            <lightning:icon iconName="action:delete" size="xx-small"/>
+                        </button>
+                    </div>
+                </aura:iteration>
+            </div>
+        <!--</div>-->
+        <!--TODO: button to create new meal-->
+    </div>
+
+    <!--<c:COM_Modal isOpen="{!v.showSearchProductModal}">-->
+        <!--<c:FitAppSearchProducts products="{!v.products}"/>-->
+    <!--</c:COM_Modal>-->
+</aura:component>

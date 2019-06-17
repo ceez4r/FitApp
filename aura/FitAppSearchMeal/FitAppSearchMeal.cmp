@@ -1,0 +1,25 @@
+<!--
+Author:        Cezary Zeleznicki
+Company:
+Description:   FitAppSearchMeal
+History
+<Date>      <Authors Name>     <Brief Description of Change>
+07/12/2018  Cezary Zeleznicki       creation
+ -->
+
+<aura:component description="FitAppSearchMeal" extends="c:COM_BaseComponent" controller="FitAppSearchMealCtrl">
+    <aura:attribute name="editMode" type="Boolean" default="false"/>
+    <aura:attribute name="meal" type="Object"/>
+    <aura:attribute name="mealTemplate" type="Map" default="{id: '', name: ''}"/>
+
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:handler name="onchange" value="{!v.meal}" action="{!c.doInit}"/>
+    <!--<aura:handler name="change" value="{!v.meal}" action="{!c.loadMeal}"/>-->
+    <aura:handler name="searchDone" event="c:COM_InputLookupSearchDoneEvent" action="{!c.loadMeal}"/>
+
+    <c:COM_InputLookup sObjectName="Meal__c"
+                       required="true"
+                       disabled="{!v.editMode}"
+                       value="{!v.mealTemplate}"
+                       label="{#$Label.c.FA_Meal_Name}"/>
+</aura:component>

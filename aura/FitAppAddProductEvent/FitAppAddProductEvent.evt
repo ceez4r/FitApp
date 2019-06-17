@@ -1,0 +1,7 @@
+<!--
+ - Created by czeleznick002 on 09.10.2018.
+ -->
+
+<aura:event type="COMPONENT" description="FitAppAddProductEvent">
+    <aura:attribute name="mealId" type="String"/>
+</aura:event>

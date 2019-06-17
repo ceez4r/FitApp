@@ -1,0 +1,39 @@
+/*------------------------------------------------------------
+Author:        Cezary Zeleznicki
+Company:
+Description:   COM_InputLookup.css
+History
+<Date>      <Authors Name>     <Brief Description of Change>
+07/12/2018  Cezary Zeleznicki       creation
+------------------------------------------------------------*/
+.THIS .search-results{
+    z-index: 7000;
+}
+
+.THIS .search-results .slds-dropdown{
+    float: right;
+    position: static;
+    margin-top: 0;
+    width: 100%;
+    max-width: 100%;
+    overflow: auto;
+    max-height: 200px;
+
+    -o-transform: none;
+    -moz-transform: none;
+    -ms-transform: none;
+    -webkit-transform: none;
+    transform: none;
+}
+
+.THIS .slds-has-error .slds-form-element__help{
+    float: right;
+    position: static;
+    margin-top: 0;
+}
+
+.THIS .no-records{
+    padding: .5rem .75rem;
+    display: block;
+    text-align: left;
+}

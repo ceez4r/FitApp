@@ -1,0 +1,94 @@
+<!--
+ - Created by czeleznick002 on 03.10.2018.
+ -->
+
+<aura:component description="FitAppBook" extends="c:COM_BaseComponent" controller="FitAppBookController">
+    <aura:attribute name="mealPlans" type="List" access="private"/>
+    <aura:attribute name="startingIndex" type="Integer" access="private"/>
+    <aura:attribute name="endIndex" type="Integer" access="private"/>
+    <aura:attribute name="contact" type="Object"/>
+    <aura:attribute name="mealPlanChannel" type="String" default="/data/Meal_Plan__ChangeEvent"/>
+    <aura:attribute name="slideListTransitionPosition" type="Integer" default="0"/>
+    <aura:attribute name="modalContent" type="Aura.Component[]"/>
+    <aura:attribute name="showModal" type="Boolean" default="false"/>
+    <aura:attribute name="products" type="Object[]"/>
+
+    <aura:handler name="init" action="{!c.doInit}" value="{!this}"/>
+    <aura:handler name="saveMeal" event="c:FitAppSaveMealEvent" action="{!c.saveMeal}" includeFacets="true"/>
+    <aura:handler name="addNewMeal" event="c:FitAppAddNewMealEvent" action="{!c.addNewMeal}" includeFacets="true"/>
+    <aura:handler name="removeMealPlanMeal" event="c:FitAppRemoveMealPlanMealEvent" action="{!c.removeMealPlanMeal}" includeFacets="true"/>
+    <aura:handler name="searchProductEvent" event="c:FitAppSearchProductEvent" action="{!c.searchProduct}"/>
+    <aura:handler name="updatedRecord" event="c:RecordChangeEvent" action="{!c.handleMessage}"/>
+    <aura:handler name="showModal" event="c:ShowFitAppBookModalEvent" action="{!c.showModal}"/>
+
+    <c:COM_RecordChangeHandler channelName="{!v.mealPlanChannel}"/>
+
+    <div class="slds-is-relative">
+        <h1 class="slds-text-heading--small slds-p-vertical--medium">FitApp Book</h1>
+
+        <div class="slds-grid min-height slds-wrap slide-container slds-scrollable_none">
+            <div class="slds-is-absolute left-arrow">
+                <button class="slds-button slds-button_icon" onclick="{!c.previousDay}">
+                    <lightning:icon iconName="utility:chevronleft" size="large"/>
+                </button>
+            </div>
+
+            <div class="slds-grid slds-size_1-of-1 slide-list" aura:id="slideList">
+                <aura:iteration items="{!v.mealPlans}" var="mealPlan" indexVar="idx">
+                    <div class="slds-col slds-size_1-of-7 slds-p-right_medium meal-plan">
+                        <div class="slds-col slds-size_1-of-1 background-light-grey border-rounded min-height">
+                            <c:FitAppMealPlan aura:id="mealPlan" mealPlan="{!mealPlan}" index="{!idx}"/>
+                        </div>
+
+                        <div class="slds-col slds-size_1-of-1">
+                            <div class="slds-box_border slds-m-top_medium background-light-grey">
+                                <div class="slds-p-left_x-small slds-p-right_x-small slds-p-vertical_x-small">
+                                    <div class="slds-col slds-m-bottom_xxx-small">
+                                        <c:FitAppPercentageColorBar label="Protein"
+                                                                    maximumFractionDigits="0"
+                                                                    value="{!mealPlan.protein gt 0 ? ((mealPlan.protein / v.contact.record.Daily_Protein__c)) : 0}"/>
+                                    </div>
+
+                                    <div class="slds-col slds-m-bottom_xxx-small">
+                                        <c:FitAppPercentageColorBar label="Fat"
+                                                                    maximumFractionDigits="0"
+                                                                    value="{!mealPlan.fat gt 0 ? ((mealPlan.fat / v.contact.record.Daily_Fat__c)) : 0}"/>
+                                    </div>
+
+                                    <div class="slds-col slds-m-bottom_xxx-small">
+                                        <c:FitAppPercentageColorBar label="Carbs"
+                                                                    maximumFractionDigits="0"
+                                                                    value="{!mealPlan.carbs gt 0 ? ((mealPlan.carbs / v.contact.record.Daily_Carbs__c)) : 0}"/>
+                                    </div>
+
+                                    <div class="slds-col slds-m-bottom_xxx-small">
+                                        <c:FitAppPercentageColorBar label="Kcal"
+                                                                    maximumFractionDigits="0"
+                                                                    value="{!mealPlan.kcal gt 0 ? ((mealPlan.kcal / v.contact.record.Kcal__c)) : 0}"/>
+                                    </div>
+                                </div>
+
+                                <div class="slds-col">
+                                    <c:Chart/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </aura:iteration>
+            </div>
+
+            <div class="slds-is-absolute right-arrow">
+                <button class="slds-button slds-button_icon" onclick="{!c.nextDay}">
+                    <lightning:icon iconName="utility:chevronright" size="large"/>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <c:FitAppMealEditModal showModal="{!v.showModal}" products="{!v.products}" aura:id="mealModal"/>
+
+    <lightning:spinner aura:id="spinner"
+                       class="slds-is-fixed slds-hide"
+                       alternativeText="Loading data"
+                       size="medium"/>
+</aura:component>

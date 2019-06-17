@@ -1,0 +1,29 @@
+<!--
+Author:        Cezary Zeleznicki
+Company:
+Description:   FitAppPercentageColorBar
+History
+<Date>      <Authors Name>     <Brief Description of Change>
+07/12/2018  Cezary Zeleznicki       creation
+ -->
+
+<aura:component description="FitAppPercentageColorBar">
+    <aura:attribute name="value" type="Integer" default="0" required="true"/>
+    <aura:attribute name="maximumFractionDigits" type="Integer" default="0" required="true"/>
+    <aura:attribute name="label" type="String" required="true"/>
+
+    <div class="slds-grid">
+        <div class="slds-col slds-size_1-of-3 slds-p-right_xx-small">{#v.label}:</div>
+
+        <div class="slds-col slds-size_2-of-3 slds-p-left_xx-small">
+             <div class="{!'slds-p-left_xx-small bar-' + (v.value > 0.7 ? v.value > 0.9 ? 'green' : 'yellow' : v.value > 0 ? 'red' : '')}"
+                  style="{!'width: ' + (v.value lt 1 ? v.value * 100 : 100) + '%'}">
+                 <lightning:formattedNumber title="{#v.label}"
+                                            maximumFractionDigits="{#v.maximumFractionDigits}"
+                                            value="{!v.value}"
+                                            style="percent"/>
+             </div>
+        </div>
+    </div>
+
+</aura:component>

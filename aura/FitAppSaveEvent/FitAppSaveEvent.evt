@@ -1,0 +1,12 @@
+<!--
+Author:        Cezary Zeleznicki
+Company:
+Description:   FitAppSaveEvent
+History
+<Date>      <Authors Name>     <Brief Description of Change>
+06.10.2018  Cezary Zeleznicki       creation
+ -->
+
+<aura:event type="COMPONENT" description="FitAppSaveEvent">
+    <aura:attribute name="cmpName" type="String"/>
+</aura:event>

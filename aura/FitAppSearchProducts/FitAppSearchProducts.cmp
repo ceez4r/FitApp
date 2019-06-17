@@ -1,0 +1,49 @@
+<!--
+ - Created by czeleznick002 on 08.10.2018.
+ -->
+
+<aura:component description="FitAppSearchProducts" extends="c:COM_BaseComponent">
+    <aura:attribute name="searchPhrase" type="Boolean"/>
+    <aura:attribute name="products" type="List"/>
+
+    <aura:handler name="change" value="{!v.products}" action="{!c.hideSpinner}"/>
+    <aura:registerEvent name="selectProduct" type="c:FitAppSearchProductSelectedEvent"/>
+    <aura:registerEvent name="searchProductEvent" type="c:FitAppSearchProductEvent"/>
+
+    <div>
+        <div class="slds-grid">
+            <div class="slds-col">
+                <span onkeypress="{!c.keyCheck}">
+                    <lightning:input label="Product search"
+                                     value="{!v.searchPhrase}"
+                                     placeholder="Product Name"/>
+                </span>
+            </div>
+
+            <div class="slds-col slds-align-bottom slds-m-left_medium">
+                <lightning:button label="Search" onclick="{!c.searchProducts}"/>
+            </div>
+        </div>
+
+
+        <aura:iteration items="{!v.products}" var="product" indexVar="index">
+            <div class="slds-grid">
+                <div class="slds-col slds-align-bottom">
+                    <lightning:buttonIconStateful name="Select"
+                                      iconName="utility:add"
+                                      value="{!index}"
+                                      onclick="{!c.selectProduct}"/>
+                </div>
+
+                <div class="slds-col" id="{!'product-container-' + index}" aura:id="divProductContainer">
+                    <c:FitAppProduct aura:id="productContainer" product="{!product}" editWeight="true"/>
+                </div>
+            </div>
+        </aura:iteration>
+    </div>
+
+    <lightning:spinner aura:id="spinner"
+                       class="slds-hide"
+                       alternativeText="Loading products"
+                       size="small"/>
+</aura:component>

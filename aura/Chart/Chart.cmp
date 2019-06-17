@@ -1,0 +1,14 @@
+<!--
+ - Created by czeleznick002 on 04.12.2018.
+ -->
+
+<aura:component description="Chart" implements="flexipage:availableForAllPageTypes">
+    <aura:attribute name="width" type="String" default="300"/>
+    <aura:attribute name="height" type="String" default="300"/>
+
+    <ltng:require scripts="{!$Resource.ChartJS}" afterScriptsLoaded="{!c.generateChart}"/>
+
+    <div class="slds-box">
+        <canvas aura:id="chart" height="{!v.height}" width="{!v.width}"></canvas>
+    </div>
+</aura:component>

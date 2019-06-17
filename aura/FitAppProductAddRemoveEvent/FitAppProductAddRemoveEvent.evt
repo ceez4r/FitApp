@@ -1,0 +1,8 @@
+<!--
+ - Created by czeleznick002 on 09.10.2018.
+ -->
+
+<aura:event type="COMPONENT" description="FitAppProductAddRemoveEvent">
+    <aura:attribute name="action" type="String"/>
+    <aura:attribute name="productId" type="String"/>
+</aura:event>

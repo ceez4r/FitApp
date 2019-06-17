@@ -1,0 +1,53 @@
+/*------------------------------------------------------------
+Author:        Cezary Zeleznicki
+Company:
+Description:   FitAppBook.css
+History
+<Date>      <Authors Name>     <Brief Description of Change>
+12.10.2018  Cezary Zeleznicki       creation
+------------------------------------------------------------*/
+.THIS .min-height{
+    min-height: 20.5vw;
+}
+
+.THIS .background-light-grey {
+    background-color: #f2f5f9;
+}
+
+.THIS .border-rounded {
+    border-radius: .25rem;
+    -webkit-box-shadow: 17px 20px 19px -9px rgba(0,0,0,0.43);
+    -moz-box-shadow: 17px 20px 19px -9px rgba(0,0,0,0.43);
+    box-shadow: 17px 20px 19px -9px rgba(0,0,0,0.43);
+}
+
+.THIS .arrow {
+    top: 50%;
+}
+
+.THIS .slide-container {
+    margin-left: calc(100%/14);
+    margin-right: calc(100%/14);
+}
+
+.THIS .slide-list {
+    transition: transform .5s ease;
+}
+
+.THIS .right-arrow {
+    top: 50%;
+    right: 34px;
+}
+
+.THIS .left-arrow {
+    top: 50%;
+    left: 34px;
+}
+
+.THIS .slide-list .meal-plan:nth-child(1){
+    padding-left:1rem;
+}
+
+.THIS .font-bold {
+    font-weight: 700;
+}

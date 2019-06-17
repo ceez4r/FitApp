@@ -1,0 +1,7 @@
+<!--
+ - Created by czeleznick002 on 09.10.2018.
+ -->
+
+<aura:event type="COMPONENT" description="FitAppSaveMeal">
+    <aura:attribute name="meal" type="Object"/>
+</aura:event>

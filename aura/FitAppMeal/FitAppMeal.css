@@ -1,0 +1,46 @@
+/*------------------------------------------------------------
+Author:        Cezary Zeleznicki
+Company:
+Description:   FitAppMeal.css
+History
+<Date>      <Authors Name>     <Brief Description of Change>
+15.10.2018  Cezary Zeleznicki       creation
+------------------------------------------------------------*/
+.THIS button.fa-branded.light-blue {
+    border-top: 1px solid #deebfc;
+    background-color: #deeaf9;
+    -webkit-box-shadow: #9099a5 0 1px 0;
+    -moz-box-shadow: #9099a5 0 1px 0;
+    box-shadow: #9099a5 0 1px 0;
+}
+
+.THIS button.fa-branded.light-blue:hover {
+    border-top: 1px solid #b3becc;
+    background-color: #b7c1ce;
+
+}
+
+.THIS button.fa-branded.light-blue:active {
+    background-color: #deeaf9;
+    box-shadow: none;
+}
+
+.THIS button.fa-branded.blue {
+    border-top: 1px solid #91bbf2;
+    background-color: #7da0ce;
+    color:white;
+    -webkit-box-shadow: rgba(0,0,0,1) 0 1px 0;
+    -moz-box-shadow: rgba(0,0,0,1) 0 1px 0;
+    box-shadow: rgba(0,0,0,1) 0 1px 0;
+    text-shadow: rgba(0,0,0,.4) 0 1px 0;
+}
+
+.THIS button.fa-branded.blue:hover {
+    border-top-color: #6c8bb5;
+    background-color: #6885aa;
+    color: #ccc;
+}
+
+.THIS button.fa-branded.blue:active {
+    background-color: #7da0ce;
+}

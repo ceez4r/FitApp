@@ -1,0 +1,57 @@
+/*------------------------------------------------------------
+Author:        Cezary Zeleznicki
+Company:
+Description:   FitAppMealPlan.css
+History
+<Date>      <Authors Name>     <Brief Description of Change>
+15.10.2018  Cezary Zeleznicki       creation
+------------------------------------------------------------*/
+.THIS .add-meal{
+    left: -0.5%;
+    top: 50%;
+    z-index: 1;
+    transform: translateY(-50%);
+}
+
+.THIS .add-meal .slds-icon_container {
+    padding: 0.2rem;
+}
+
+.THIS .remove-meal{
+    right: -0.5%;
+    top: 50%;
+    z-index: 1;
+    transform: translateY(-50%);
+}
+
+.THIS .remove-meal .slds-icon_container {
+    padding: 0.2rem;
+}
+
+.THIS .remove-meal .slds-icon-action-delete {
+    background-color: lightsteelblue;
+}
+
+.THIS button.add-meal{
+    /*background-color: #96d1f8;*/
+}
+
+.THIS .meal-column {
+    border-bottom: 1px solid rgb(212,224,243);
+}
+
+.THIS .meal-column:last-child {
+    border-bottom: none;
+}
+
+.THIS .meal-column > button {
+    display: none;
+}
+
+.THIS .meal-column:hover > button{
+    display: block;
+}
+
+.THIS .meal-column:hover {
+    background-color: rgb(180, 213, 253);
+}
